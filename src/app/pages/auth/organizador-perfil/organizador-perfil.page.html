@@ -1,0 +1,270 @@
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="top-margin">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="auto">
+        <img src="../../../../assets/imagenes/arbittroREs.png" alt="Imagen Principal" class="img-left">
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <h1>Hola Usuario</h1>
+        <div class="image-container">
+          <span class="overlay-text">Organizador</span>
+          <img src="../../../../assets/imagenes/componentes/Recurso 3.png" alt="Recurso 3" class="img-center">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button id="open-custom-dialog" class="organizadorreserbas" expand="block" fill="clear">
+          <img src="../../../../assets/imagenes/componentes/Recurso 2.png" alt="Recurso 2">
+        </ion-button>
+      
+        <ion-modal id="example-modal" #modal trigger="open-custom-dialog" backdropDismiss="true">
+          <ng-template>
+            <div class="modal-wrapper" >
+              <!--  -->
+              <ion-button class="custom-button-modal" id="open-modal-amistoso" expand="block" >Amistoso</ion-button>
+              <ion-button class="custom-button-modal" id="open-modal-torneo" expand="block" >Torneo</ion-button>
+              
+              <ion-modal
+                trigger="open-modal-amistoso"
+                [initialBreakpoint]="0.78"
+                [breakpoints]="[0, 0.25, 0.5, 0.80]"
+                handleBehavior="cycle"
+              >
+                <ng-template>
+                  <ion-content class="ion-padding">
+                    <h3 class="h3_torneo">Amistoso</h3>
+                    <div class="ion-margin-top">
+                      <form [formGroup]="form_amistoso" class="auth-form_amistoso" (ngSubmit)="onSubmitAmistoso()">
+                        <ul class="form-list">
+                          <li>
+                            <label>
+                              Fecha de Inicio:
+                              <input formControlName="fecha_de_inicio" type="date">
+                            </label>
+                            <div *ngIf="form_amistoso.get('fecha_de_inicio')?.invalid && form_amistoso.get('fecha_de_inicio')?.touched">
+                              <small *ngIf="form_amistoso.get('fecha_de_inicio')?.errors?.['required']">Fecha de inicio es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                              Localidad:
+                              <select formControlName="localidad">
+                                <option value="" disabled selected>Seleccione una localidad</option>
+                                <option *ngFor="let loc of localidades" [value]="loc">{{ loc }}</option>
+                              </select>
+                            </label>
+                            <div *ngIf="form_amistoso.get('localidad')?.invalid && form_amistoso.get('localidad')?.touched">
+                              <small *ngIf="form_amistoso.get('localidad')?.errors?.['required']">Localidad es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                              Hora:
+                              <input formControlName="hora" type="time">
+                            </label>
+                            <div *ngIf="form_amistoso.get('hora')?.invalid && form_amistoso.get('hora')?.touched">
+                              <small *ngIf="form_amistoso.get('hora')?.errors?.['required']">Hora es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                              Lugar:
+                              <input formControlName="Lugar" type="text">
+                            </label>
+                            <div *ngIf="form_amistoso.get('Lugar')?.invalid && form_amistoso.get('Lugar')?.touched">
+                              <small *ngIf="form_amistoso.get('Lugar')?.errors?.['required']">Lugar es requerido.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                              Tipo de Árbitro:
+                              <input formControlName="tipo_de_arbitro" type="text">
+                            </label>
+                            <div *ngIf="form_amistoso.get('tipo_de_arbitro')?.invalid && form_amistoso.get('tipo_de_arbitro')?.touched">
+                              <small *ngIf="form_amistoso.get('tipo_de_arbitro')?.errors?.['required']">Tipo de árbitro es requerido.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <button type="submit">Enviar Amistoso</button>
+                          </li>
+                        </ul>
+                      </form>
+                      
+                    </div>
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+              
+              <ion-modal
+                trigger="open-modal-torneo"
+                [initialBreakpoint]="0.78"
+                [breakpoints]="[0, 0.25, 0.5, 0.80]"
+                handleBehavior="cycle"
+              >
+                <ng-template class="ng-template">
+                  <ion-content class="ion-padding">
+                    <h3 class="h3_torneo">Torneo</h3>
+                    <div class="ion-margin-top">
+                      <form [formGroup]="form_torneo" class="auth-form_torneo" (ngSubmit)="onSubmitTorneo()">
+                        <ul class="form-list">
+                          <li>
+                            <label>
+                              Fecha de Inicio:
+                              <input formControlName="fecha_de_inicio" type="date">
+                            </label>
+                            <div *ngIf="form_torneo.get('fecha_de_inicio')?.invalid && form_torneo.get('fecha_de_inicio')?.touched">
+                              <small *ngIf="form_torneo.get('fecha_de_inicio')?.errors?.['required']">Fecha de inicio es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                              Fecha de Finalización:
+                              <input formControlName="fecha_de_fin" type="date">
+                            </label>
+                            <div *ngIf="form_torneo.get('fecha_de_fin')?.invalid && form_torneo.get('fecha_de_fin')?.touched">
+                              <small *ngIf="form_torneo.get('fecha_de_fin')?.errors?.['required']">Fecha de finalización es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                               Localidad:
+                              <select formControlName="localidad">
+                                <option class="optionLocalidad" value="" disabled selected>Seleccione una localidad</option>
+                                <option class="optionLocalidad" *ngFor="let loc of localidades" [value]="loc">{{ loc }}</option>
+                              </select>
+                            </label>
+                            <div *ngIf="form_torneo.get('localidad')?.invalid && form_torneo.get('localidad')?.touched">
+                              <small *ngIf="form_torneo.get('localidad')?.errors?.['required']">Localidad es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                               Hora:
+                              <input formControlName="hora" type="time">
+                            </label>
+                            <div *ngIf="form_torneo.get('hora')?.invalid && form_torneo.get('hora')?.touched">
+                              <small *ngIf="form_torneo.get('hora')?.errors?.['required']">Hora es requerida.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                               Lugar:
+                              <input formControlName="Lugar" type="text">
+                            </label>
+                            <div *ngIf="form_torneo.get('Lugar')?.invalid && form_torneo.get('Lugar')?.touched">
+                              <small *ngIf="form_torneo.get('Lugar')?.errors?.['required']">Lugar es requerido.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <label>
+                              Tipo de Árbitro:
+                              <input formControlName="tipo_de_arbitro" type="text">
+                            </label>
+                            <div *ngIf="form_torneo.get('tipo_de_arbitro')?.invalid && form_torneo.get('tipo_de_arbitro')?.touched">
+                              <small *ngIf="form_torneo.get('tipo_de_arbitro')?.errors?.['required']">Tipo de árbitro es requerido.</small>
+                            </div>
+                          </li>
+                          <li>
+                            <button type="submit">Enviar Torneo</button>
+                          </li>
+                        </ul>
+                      </form>
+                    </div>
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+              
+              
+              <!--  -->
+            </div>
+          </ng-template>
+        </ion-modal>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button class="custom-button" id="open-modal-Tus-historial" expand="block">Tus reservas</ion-button>
+        <ion-button class="custom-button" expand="block">Ayuda</ion-button>
+        <ion-button class="custom-button" expand="block">Tarifas</ion-button>
+        <ion-modal
+          trigger="open-modal-Tus-historial"
+          [initialBreakpoint]="0.78"
+          [breakpoints]="[0, 0.25, 0.5, 0.80]"
+          handleBehavior="cycle"
+        >
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h3 class="h3_Programación">Historial de programación</h3>
+              <div class="ion-margin-top1" *ngFor="let character of characters">
+                <div class="character-info">
+                  <span class="span1">{{ character.tipo }}</span>
+                  <span class="span1">{{ character.fecha_de_inicio }}</span>
+                  <span class="span1">{{ character.fecha_de_finalizacion }}</span>
+                  <span class="span1">{{ character.hora }}</span>
+                  <span class="span1">{{ character.localidad }}</span>
+                  <span class="span1">{{ character.lugar }}</span>
+                </div>
+                <img class="img-background" src="../../../../assets/imagenes/componentes/Recurso 10.png" alt="Recurso 2">
+                <div class="overlay-escudoCont">
+                  <!-- info histoaial  -->
+                  <a [id]="'open-modal-Tus-info-' + character.id" expand="block" class="fantasma">
+                    <span class="overlay-escudo">{{character.estado}}</span>
+                    <img src="../../../../assets/imagenes/componentes/Recurso 3.png" alt="Recurso 3" class="img-escudo">
+                  </a>
+                  <ion-modal
+                    [trigger]="'open-modal-Tus-info-' + character.id"
+                    [initialBreakpoint]="0.78"
+                    [breakpoints]="[0, 0.25, 0.5, 0.80]"
+                    handleBehavior="cycle"
+                  >
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <div class="ion-margin-top2">
+                          <h3 class="h3_Programación">programación</h3>
+                          <div class="contmain">
+                            <img class="escudo" src="../../../../assets/imagenes/componentes/Recurso escudo info.png" alt="">
+                          <div class="info-div">
+                            <span class="spanfull">Evento: {{ character.estado}}</span>
+                            <span class="span3">{{ character.fecha_de_inicio }}</span>
+                            <span class="span3">{{ character.fecha_de_finalizacion }}</span>
+                            <span class="span3">{{ character.hora }}</span>
+                            <span class="span3">{{ character.localidad }}</span>
+                            <span class="span3">{{ character.lugar }}</span>
+                            <span class="span3">{{ character.tipo }}</span>
+                          </div>
+                        </div>
+                          <div class="barraEstados">
+                            <ul class="estado-bar">
+                              <li *ngFor="let estado of estados"
+                                  [ngClass]="{ 'estado-punto': true, 'estado-completo': estado === character.estado || estados.indexOf(estado) <= estados.indexOf(character.estado) }">
+                              </li>
+                              <ion-icon class="succes" name="checkmark-circle-outline"></ion-icon>
+                            </ul>
+                            <ul class="contextos">
+                              <p class="textos">Solicutud aceptada</p>
+                              <p class="textos">Se efectuo el pago</p>
+                              <p class="textos">Inicio de fecha</p>
+                              <p class="textos">Finalización programación</p>
+                            </ul>
+                          </div>
+                        <div class="namebar">
+                          <img src="../../../../assets/imagenes/componentes/Recurso 3.png" alt="Recurso 3" class="contnam">
+                        </div>
+                        </div>
+                      </ion-content>
+                    </ng-template>
+                  </ion-modal>
+                  <!-- info histoaial  -->
+                </div>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

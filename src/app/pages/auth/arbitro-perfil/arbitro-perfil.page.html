@@ -1,0 +1,139 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="top-margin">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="auto">
+        <img src="../../../../assets/imagenes/arbittroREs.png" alt="Imagen Principal" class="img-left">
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <h1>Hola Usuario</h1>
+        <div class="image-container">
+          <span class="overlay-text">Arbitro</span>
+          <img src="../../../../assets/imagenes/componentes/Recurso 3.png" alt="Recurso 3" class="img-center">
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Modal -->
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button id="open-modal-Tus-reservas" class="organizadorreserbas" expand="block" fill="clear">
+          <img src="../../../../assets/imagenes/componentes/Recurso arbitro.png" alt="Recurso 2">
+        </ion-button>
+
+        <ion-modal trigger="open-modal-Tus-reservas" [initialBreakpoint]="0.78" [breakpoints]="[0, 0.25, 0.5, 0.80]" handleBehavior="cycle">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h3 class="h3_Solictudes">Solictudes</h3>
+              <div class="ion-margin-top2" *ngFor="let character of characters">
+                <div class="character-info">
+                  <span class="span1">{{ character.tipo }}</span>
+                  <span class="span1">{{ character.fecha_de_inicio }}</span>
+                  <span class="span1">{{ character.fecha_de_finalizacion }}</span>
+                  <span class="span1">{{ character.hora }}</span>
+                  <span class="span1">{{ character.localidad }}</span>
+                  <span class="span1">{{ character.lugar }}</span>
+                </div>
+                <img class="img-background" src="../../../../assets/imagenes/componentes/Recurso 10.png" alt="Recurso 10">
+                <ion-row class="img-escudo-container">
+                  <div class="cont_but">
+                    <ion-col size="6">
+                      <ion-button class="bontones_esudosl" fill="clear" (click)="actualizar(character.id)">
+                      </ion-button>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-button class="bontones_esudosr" fill="clear">
+                      </ion-button>
+                    </ion-col>
+                  </div>
+                </ion-row>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-col>
+    </ion-row>
+
+    <!-- Modal historial -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button class="custom-button" id="open-modal-Tus-historial" expand="block">Tus reservas</ion-button>
+        <ion-button class="custom-button" expand="block">Ayuda</ion-button>
+        <ion-button class="custom-button" expand="block">Tarifas</ion-button>
+        <ion-modal
+          trigger="open-modal-Tus-historial"
+          [initialBreakpoint]="0.78"
+          [breakpoints]="[0, 0.25, 0.5, 0.80]"
+          handleBehavior="cycle"
+        >
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h3 class="h3_Programación">Historial de programación</h3>
+              <div class="ion-margin-top1" *ngFor="let character of historial">
+                <div class="character-info">
+                  <span class="span1">{{ character.tipo }}</span>
+                  <span class="span1">{{ character.fecha_de_inicio }}</span>
+                  <span class="span1">{{ character.fecha_de_finalizacion }}</span>
+                  <span class="span1">{{ character.hora }}</span>
+                  <span class="span1">{{ character.localidad }}</span>
+                  <span class="span1">{{ character.lugar }}</span>
+                </div>
+                <img class="img-background" src="../../../../assets/imagenes/componentes/Recurso 10.png" alt="Recurso 2">
+                <div class="overlay-escudoCont">
+                  <!-- info histoaial  -->
+                  <a [id]="'open-modal-Tus-info-' + character.id" expand="block" class="fantasma">
+                    <span class="overlay-escudo">{{character.estado}}</span>
+                    <img src="../../../../assets/imagenes/componentes/Recurso 3.png" alt="Recurso 3" class="img-escudo">
+                  </a>
+                  <ion-modal
+                    [trigger]="'open-modal-Tus-info-' + character.id"
+                    [initialBreakpoint]="0.78"
+                    [breakpoints]="[0, 0.25, 0.5, 0.80]"
+                    handleBehavior="cycle"
+                  >
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <div class="ion-margin-top2">
+                          <h3 class="h3_Programación">programación</h3>
+                          <div class="contmain">
+                            <img class="escudo" src="../../../../assets/imagenes/componentes/Recurso escudo info.png" alt="">
+                          <div class="info-div">
+                            <span class="spanfull">Evento: {{ character.estado}}</span>
+                            <span class="span3">{{ character.fecha_de_inicio }}</span>
+                            <span class="span3">{{ character.fecha_de_finalizacion }}</span>
+                            <span class="span3">{{ character.hora }}</span>
+                            <span class="span3">{{ character.localidad }}</span>
+                            <span class="span3">{{ character.lugar }}</span>
+                            <span class="span3">{{ character.tipo }}</span>
+                          </div>
+                        </div>
+                          <div class="barraEstados">
+                            <ul class="estado-bar">
+                              <li *ngFor="let estado of estados"
+                                  [ngClass]="{ 'estado-punto': true, 'estado-completo': estado === character.estado || estados.indexOf(estado) <= estados.indexOf(character.estado) }">
+                              </li>
+                              <ion-icon class="succes" name="checkmark-circle-outline"></ion-icon>
+                            </ul>
+                            <ul class="contextos">
+                              <p class="textos">Solicutud aceptada</p>
+                              <p class="textos">Se efectuo el pago</p>
+                              <p class="textos">Inicio de fecha</p>
+                              <p class="textos">Finalización programación</p>
+                            </ul>
+                          </div>
+                        <div class="namebar">
+                          <img src="../../../../assets/imagenes/componentes/Recurso 3.png" alt="Recurso 3" class="contnam">
+                        </div>
+                        </div>
+                      </ion-content>
+                    </ng-template>
+                  </ion-modal>
+                  <!-- info histoaial  -->
+                </div>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

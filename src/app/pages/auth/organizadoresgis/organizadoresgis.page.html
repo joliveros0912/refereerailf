@@ -1,0 +1,72 @@
+<ion-content>
+  <div class="d-flex-center">
+      <form [formGroup]="form" class="auth-form" (ngSubmit)="onSubmit()">
+          <img class="imagen" src="../../../../assets/imagenes/organisadorRes.png" alt="">
+          <h4>Iniciar sesión</h4>
+          <h4>Organizador</h4>
+
+          <h5>Nombre completo</h5>
+          <app-custom-imput 
+          icon="person"
+          type="text"
+          label="Introduzca nombre"
+          [control]="form.controls['nombre_completo']"
+          ></app-custom-imput>
+          
+          <h5>E-mail</h5>
+          <app-custom-imput 
+          icon="mail"
+          [control]="form.controls.email"
+          type="email"
+          label="Introduzca su e-mail "
+          ></app-custom-imput>
+          <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+              <div *ngIf="form.controls.email.errors?.['required']">El correo es requerido</div>
+              <div *ngIf="form.controls.email.errors?.['email']">Ingrese un correo valido</div>
+          </div>
+
+          <h5>Cedula</h5>
+          <app-custom-imput 
+          icon="id-card"
+          type="text"
+          label="Introduzca número de identificación"
+          [control]="form.controls['cedula_Organizador']"
+          ></app-custom-imput>
+          
+          <h5>Celular</h5>
+          <app-custom-imput 
+          icon="call"
+          type="text"
+          label="Introduzca su número de celular"
+          [control]="form.controls['celular']"
+          ></app-custom-imput>
+        
+          <h5>Contraseña</h5>
+          <app-custom-imput 
+          [control]="form.controls.contrasena"
+          type="contrasena"
+          label="Introduzca su contraseña"
+          icon="lock-closed"
+          ></app-custom-imput>
+
+          <h5>Confirmación de contraseña</h5>
+          <app-custom-imput 
+          [control]="form.controls.contrasena"
+          type="contrasena"
+          label="Introduzca su contraseña"
+          icon="lock-closed-outline"
+          ></app-custom-imput>
+          
+          <div class="validators" *ngIf="form.controls.contrasena.errors && form.controls.contrasena.touched">
+              <div *ngIf="form.controls.contrasena.errors?.['required']">La contraseña es requerida</div>
+          </div>
+        
+          <ion-button expand="block" mode="ios" class="submit" type="submit" [disabled]="form.invalid">
+              ingresar
+              <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          </ion-button>
+          
+          <h4 (click)="redirecRES()">Ya tengo cuenta</h4>
+      </form>
+  </div>
+</ion-content>

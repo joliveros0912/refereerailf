@@ -1,0 +1,44 @@
+.imagen {
+    width: 153px; 
+    height: 186px;}
+
+    h4{
+        color: rgb(75, 114, 175);
+    }
+    h5 {
+        text-align: left;
+        color: rgb(75, 114, 175);
+
+    }
+    .submit {
+        display: inline-block; /* Para que estén en línea */
+        margin-right: 10px; /* Espacio entre los botones */
+    }
+    .submit label {
+        padding: 15px 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .submit input[type="radio"] {
+        display: none;
+    }
+    .submit input[type="radio"]:checked + label {
+        background-color: #007bff;
+        color: white;
+    }
+
+    app-custom-imput{
+        border-radius: 20px; /* Borde más redondeado para el tipo de contraseña */
+    }
+    textarea {
+        width: 325px; /* Ancho de 325px */
+        height: 117px; /* Alto de 117px */
+        background-color: #ffffff; /* Fondo blanco */
+        color: #000000; /* Letra negra */
+        border: 1px solid #ccc; /* Borde de 1px sólido con color #ccc */
+        border-radius: 5px; /* Borde redondeado de 5px */
+        resize: none; /* No permitir redimensionar el textarea */
+        padding: 10px; /* Espacio interno de 10px */
+        box-sizing: border-box; /* Incluye el borde y el padding en el ancho total del textarea */
+    }

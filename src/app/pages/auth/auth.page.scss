@@ -1,0 +1,46 @@
+#login-container {
+    background-image: url('../../../assets/imagenes/Fondo\ 2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px; 
+    height: 100vh; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 10px;
+}
+
+
+.button-container ion-button {
+    margin-right: 10px; 
+    margin-top: -10px;
+    background-color: rgb(255, 255, 255); /* Establece el color de fondo como transparente */
+    border: none; /* Elimina los bordes */
+}
+
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-wrapper ion-button {
+    margin-bottom: 10px;
+}
+
+
+h6{
+    margin-top: 20px;   
+    color: rgb(88, 124, 180);
+    text-align: center;
+
+}
+h5{
+    margin-top: -5px;   
+    color: rgb(88, 124, 180);
+
+}
